@@ -1,0 +1,23 @@
+from class notes
+A complete BT with n nodes has N nodes has l=n+1/2 leaves.                      
+                                                                                
+    proof by induction on N.                                                    
+    (question, whatis the smallest value that n can be)                         
+    Base Case: n=1  ( we a re partly arguing that a bts has to have at lease one node to exist)
+    if this is the case , then the complete bts has only a root, which is also a leaf and thus only one leaf.
+        Since l=1+1/2=1, then the base case holds.                              
+                                                                                
+        Now assume that a CBT with k nods has L=k+1/2 leaves for all k=1,2,3    
+                                                                                
+        suppose we have a CBT with n nodes  (note that a CBT can only have 1,3,7, ect nodes, due to the nature of what
+        a CBT is)                                                               
+                                                                                
+        if we look at the child of the root, we can see that it has n-1/2 nodes 
+            the two subtrees rooted by the children of the root of the CBT are both CBTs with n-1/2 nodes
+        Applying the IH to these two subtrees we find that they both contain (n-1/2+1)/2 nodes
+        (NOTE: n is the number of nodes in the original tree, this is why we are basically plugging it back in)
+        = n+1/4 leaves. so the CBT with n nodes contains 2(n+1/4)=n+1/2 leaves. qed
+                                                                                
+                                                                                
+                                                                                
+
