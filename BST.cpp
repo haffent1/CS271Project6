@@ -40,29 +40,23 @@ bool BST<KeyType>:: empty() const{                           // return true if e
 //=============================================================================
 //=============================================================================
 template <class KeyType> //this is the public facing function
-Node<KeyType>* BST<KeyType>::get(const KeyType& k) const{         // return first item with key equal to k
-    if (root == NULL || k == *(root->key)){
-        return root;
-    }
-    if (k < *(root->key)){
-        return get(root->left,k);
-    }
-    else{
-        return(root->right,k);
-
-    }
+KeyType* BST<KeyType>::get(const KeyType& k) const{         // return first item with key equal to k
+    Node<KeyType> *node = getR(root, k);
+    if (node == NULL)
+        return NULL;
+    return node->value;
 }// end of get
 
 template <class KeyType> // this is the privte facing function  that lets us have the same formate as the one in the book page 290
-Node<KeyType>* BST<KeyType>:: get(Node<KeyType>* node,const KeyType& k) const{         // return first item with key equal to k
-    if (node == NULL || k == *(node->key)){
+Node<KeyType>* BST<KeyType>:: getR(Node<KeyType>* node,const KeyType& k) const{         // return first item with key equal to k
+    if (node == NULL || k == *(node->value)){
         return node;
     }
-    if (*(k) < *(node.key)){
-        return get(*node.left,k);
+    if (k < *(node->value)){
+        return getR(node->left,k);
     }
     else{
-        return(*node.right,k);
+        return getR(node->right,k);
 
     }
 }
@@ -163,6 +157,27 @@ KeyType* BST<KeyType>::minimum()const{                     // return the minimum
 
 template <class KeyType>
 KeyType* BST<KeyType>:: successor(const KeyType& k) const{   // return the successor of k
+    
+    Node<KeyType>* node = new get.(k);
+    if (node == NULL){                                             
+        return NULL                                                
+    }                                                              
+        else if (node->right != NULL)                                
+            return minimum(node.right);                            
+        else{                                                      
+            parent =node.parent                                    
+            while(parent != NULL and parent.rightChild==node){     
+                node = parent                                      
+                parent=parent.parent;                              
+            }                                                      
+            return parent;                                         
+        }                                                          
+                                                                   
+                                                                   
+
+
+
+
 }
 
 template <class KeyType>

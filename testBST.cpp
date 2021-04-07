@@ -18,10 +18,10 @@ void testPostOrder();            // return string of items from a postorder trav
 
 
 int main(){
-    //testBST(); //test BST is not running
+    //testBST();
     //testBSTcopy();
     testEmpty();      
-    testGet();        
+    testGet();   //      not working 
     testInsert();     
     //testRemove();     
     testMaximum();   
@@ -53,7 +53,6 @@ void testEmpty(){                         // return true if empty; false o/w
 
 void testGet(){
     BST<int> bst;
-    //cout<<"BST assigned"<<endl;
     int x=10;
     int y=1;
     int* value = &x;
@@ -61,7 +60,8 @@ void testGet(){
 
     bst.insert(value);
     bst.insert(value2);
-    cout<<"test get"<<endl;
+    int* node=bst.get(1);
+    cout<<"test get, should be 1: "<< *node<<endl;
 
 }
 

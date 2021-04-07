@@ -34,7 +34,7 @@ public:
     //needs assignment operator
 
     bool empty() const;                           // return true if empty; false o/w
-    Node<KeyType>* get(const KeyType& k) const;         // return first item with key equal to k
+    KeyType* get(const KeyType& k) const;         // return first item with key equal to k
     void insert(KeyType *k);                      // insert k into the tree
     /*
     void remove(const KeyType& k);                // delete first item with key equal to k
@@ -51,9 +51,9 @@ public:
 
 private:
 
-   Node<KeyType>* get(Node<KeyType>* node,const KeyType& k) const;         // return first item with key equal to k
-    Node<KeyType>* root;
-    int length;
+   Node<KeyType>* getR(Node<KeyType>* node,const KeyType& k) const;         // return first item with key equal to k
+   Node<KeyType>* root;
+   int length;
 
 };
 
