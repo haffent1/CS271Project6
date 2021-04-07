@@ -26,7 +26,7 @@ int main(){
     //testRemove();     
     testMaximum();   
     testMinimum();    
-    //testSuccessor();  
+    testSuccessor();  
     //testPredecessor();
     //testInOrder();    
     //testPreOrder();   
@@ -126,8 +126,23 @@ void testMinimum(){ //min is running but not retuning the right value
 
     //cout<<"testMin ran"<<endl;
 }
+void testSuccessor(){   // return the successor of k
+    BST<int> bst;
+    int x=10;
+    int y=1;
+    int i=15;
+    int* value = &x;
+    int* value2 = &y;
+    int* value3 = &i;
+
+    bst.insert(value);
+    bst.insert(value2);
+    bst.insert(value3);
+    int* testS = bst.successor(1);
+    cout<<"test of successor"<<*testS<<endl;
+
+}
 /*
-void testSuccessor();   // return the successor of k
 void testPredecessor(); // return the predecessor of kstd::string in
 void testInOrder();              // return string of items from an inorder traversalstd::string pre
 void testPreOrder();             // return string of items from a preorder traversal

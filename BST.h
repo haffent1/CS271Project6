@@ -41,8 +41,8 @@ public:
     */
     KeyType *maximum() const;                     // return the maximum item
     KeyType *minimum()const ;                     // return the minimum item
-    /*
     KeyType *successor(const KeyType& k) const;   // return the successor of k
+    /*
     KeyType *predecessor(const KeyType& k) const; // return the predecessor of kstd::string in
     std::string inOrder() const;              // return string of items from an inorder traversalstd::string pre
     std::preOrder() const;             // return string of items from a preorder traversal

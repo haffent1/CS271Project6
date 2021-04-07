@@ -143,7 +143,7 @@ KeyType* BST<KeyType>::maximum() const{                     // return the maximu
 }
 
 template <class KeyType>
-KeyType* BST<KeyType>::minimum()const{                     // return the minimum item
+KeyType* BST<KeyType> :: minimum()const{                     // return the minimum item
     if (root== NULL){
         return NULL;
     }
@@ -153,33 +153,35 @@ KeyType* BST<KeyType>::minimum()const{                     // return the minimum
     }
     return x->value;
 }
-/*
 
 template <class KeyType>
-KeyType* BST<KeyType>:: successor(const KeyType& k) const{   // return the successor of k
+KeyType* BST<KeyType> :: successor(const KeyType& k) const{   // return the successor of k
     
-    Node<KeyType>* node = new get.(k);
+    Node<KeyType>* node = getR(root,k);
     if (node == NULL){                                             
-        return NULL                                                
+        return NULL;                                               
     }                                                              
-        else if (node->right != NULL)                                
-            return minimum(node.right);                            
+        else if (node->right != NULL){                                
+            
+            if (node == NULL){
+                return NULL;
+            }
+            while(node->left != NULL){ // dont I need to derefrce x before doing this
+                node=node->left;
+            }
+            return node->value;
+        }//end of copy of min
+
         else{                                                      
-            parent =node.parent                                    
-            while(parent != NULL and parent.rightChild==node){     
-                node = parent                                      
-                parent=parent.parent;                              
+            while(node->parent != NULL && node->parent->right == node){     
+                node = node->parent;                                      
+                node->parent=node->parent->parent;                              
             }                                                      
-            return parent;                                         
+            return node->parent->value;                                         
         }                                                          
-                                                                   
-                                                                   
+}//end of sucessor
 
-
-
-
-}
-
+/*
 template <class KeyType>
 KeyType* BST<KeyType>:: predecessor(const KeyType& k) const{ // return the predecessor of kstd::string in
 }
