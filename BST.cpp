@@ -1,4 +1,7 @@
 #include <iostream>
+
+#include <sstream> //string stream                  
+
 //#include "BST.h"
 using namespace std;
 
@@ -93,12 +96,12 @@ void BST<KeyType>::insert(KeyType *k){                      // insert k into the
 /*
 template <class KeyType>
 void BST<KeyType>::remove(const KeyType& k){                // delete first item with key equal to k
-    NODE* node
-    IF((node.left != NULL) && (node.right != NULL)){ // this is the hard case   
-        splice=successor(node);                                                 
+    Node<KeyType>* node = new Node<KeyType>(k);
+    IF((node->left != NULL) && (node->right != NULL)){ // this is the hard case   
+        Node<KeyType>* splice= new getR(successor(node->value),node->value); //what type os splice
     }//end of if                                                                
     else{                                                                       
-        splice node;                                                            
+        Node<KeyType>* splice = node;                                                            
     }//end of else                                                              
                                                                                 
     if(splice.left != NULL){                                                    
@@ -181,28 +184,124 @@ KeyType* BST<KeyType> :: successor(const KeyType& k) const{   // return the succ
         }                                                          
 }//end of sucessor
 
-/*
 template <class KeyType>
 KeyType* BST<KeyType>:: predecessor(const KeyType& k) const{ // return the predecessor of kstd::string in
+    
+    
+    Node<KeyType>* node = getR(root,k);
+    if (node == NULL){                                             
+        return NULL;                                               
+    }                                                              
+        else if (node->left!= NULL){                                
+            
+            if (node == NULL){
+                return NULL;
+            }
+            while(node->right!= NULL){ // dont I need to derefrce x before doing this
+                node=node->right;
+            }
+            return node->value;
+        }//end of copy of min
+
+        else{                                                      
+            while(node->parent != NULL && node->parent->left == node){     
+                node = node->parent;                                      
+                node->parent=node->parent->parent;                              
+            }                                                      
+            return node->parent->value;                                         
+        }                                                          
+
+
+
+}
+
+
+template <class KeyType>
+std::string BST<KeyType> :: inOrder() const{              // return string of items from an inorder traversalstd::string pre
+    std::stringstream ss;
+    Node<KeyType>* currentNode = root;
+    if(currentNode == NULL){
+        ss<<"[]";
+    }
+    else{
+        ss<<"[";
+        inOrderR(currentNode,ss);
+    }
+    return ss.str();
+
+}
+
+
+template <class KeyType>
+std::string BST<KeyType> :: inOrderR(Node<KeyType>* currentNode, std::stringstream& ss) const{
+    if(currentNode != NULL){
+        ss<<"[]";
+    }
+    else{
+        inOrderR(currentNode->left);
+
+    }
+    return ss.str();
+}
+
+
+template <class KeyType>
+std::string BST<KeyType> :: preOrder() const{             // return string of items from a preorder traversal
+    std::stringstream ss;
+    Node<KeyType>* currentNode = root;
+    if(currentNode == NULL){
+        ss<<"[]";
+    }
+    else{
+        ss<<"[";
+        preOrderR(currentNode,ss);
+        ss<<"]";
+    }
+    return ss.str();
+
+
 }
 
 template <class KeyType>
- BST<KeyType>::inOrder() const{              // return string of items from an inorder traversalstd::string pre
-     if(x != NULL){ //this was x not root in the book
-        inOrder(x.left)     
-        cout<<x.key<<endl;
-        inOrder(x.right);
-     }
-
-
+std::string BST<KeyType> :: preOrderR(Node<KeyType>* currentNode, std::stringstream& ss) const{
+    //cout<<"preOrderR called"<<ss.str()<<endl;
+    if(currentNode != NULL){
+        ss<<*(currentNode->value)<<",";
+        preOrderR(currentNode->left,ss);
+        preOrderR(currentNode->right,ss);
+    }
+    return ss.str();
 }
+
+
+
 
 template <class KeyType>
-BST<KeyType>:: preOrder() const{             // return string of items from a preorder traversal
+std::string BST<KeyType> :: postOrder() const{            // return string of items from a postorder traversal
+    std::stringstream ss;
+    Node<KeyType>* currentNode = root;
+    if(currentNode == NULL){
+        ss<<"[]";
+    }
+    else{
+        ss<<"[";
+        postOrderR(currentNode,ss);
+        ss<<"]";
+    }
+    return ss.str();
+
 }
 
+
 template <class KeyType>
-std::string postOrder() const{            // return string of items from a postorder traversal
+std::string BST<KeyType> :: postOrderR(Node<KeyType>* currentNode, std::stringstream& ss) const{
+    if(currentNode != NULL){
+        postOrderR(currentNode->left,ss);
+        postOrderR(currentNode->right,ss);
+        ss<<*(currentNode->value)<<",";
+    }
+    return ss.str();
 }
-*/
+
+
 

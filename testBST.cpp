@@ -21,16 +21,17 @@ int main(){
     //testBST();
     //testBSTcopy();
     testEmpty();      
-    testGet();   //      not working 
+    testGet();    
     testInsert();     
     //testRemove();     
     testMaximum();   
     testMinimum();    
     testSuccessor();  
-    //testPredecessor();
-    //testInOrder();    
-    //testPreOrder();   
-    //testPostOrder();  
+    testPredecessor();
+    //testInOrder();    //this is the last of the order functions that needs to be written
+    testPreOrder();   
+    testPostOrder();  
+    //testEquals();
 }
 
 
@@ -142,9 +143,57 @@ void testSuccessor(){   // return the successor of k
     cout<<"test of successor"<<*testS<<endl;
 
 }
+void testPredecessor(){ // return the predecessor of kstd::string in
+
+    BST<int> bst;
+    int x=10;
+    int y=1;
+    int i=15;
+    int* value = &x;
+    int* value2 = &y;
+    int* value3 = &i;
+
+    bst.insert(value);
+    bst.insert(value2);
+    bst.insert(value3);
+    int* testS = bst.predecessor(10);
+    cout<<"test of testPredecessor"<<*testS<<endl;
+
+
+}//end of Predecessors
 /*
-void testPredecessor(); // return the predecessor of kstd::string in
 void testInOrder();              // return string of items from an inorder traversalstd::string pre
-void testPreOrder();             // return string of items from a preorder traversal
-void testPostOrder();            // return string of items from a postorder traversal
 */
+void testPreOrder(){             // return string of items from a preorder traversal
+
+    BST<int> bst;
+    int x=10;
+    int y=1;
+    int i=15;
+    int* value = &x;
+    int* value2 = &y;
+    int* value3 = &i;
+
+    bst.insert(value);
+    bst.insert(value2);
+    bst.insert(value3);
+    string testPre = bst.preOrder();
+    cout<<"test of PreOrder"<<testPre<<endl;
+}
+
+void testPostOrder(){            // return string of items from a postorder traversal
+    BST<int> bst;
+    int x=10;
+    int y=1;
+    int i=15;
+    int* value = &x;
+    int* value2 = &y;
+    int* value3 = &i;
+
+    bst.insert(value);
+    bst.insert(value2);
+    bst.insert(value3);
+    string testPre = bst.postOrder();
+    cout<<"test of postOrder"<<testPre<<endl;
+}
+
