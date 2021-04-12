@@ -3,7 +3,7 @@
 using namespace std;
 
 void testBST();
-void testBSTcopy();
+void testBSTCopy();
 void testEmpty();                           // return true if empty; false o/w
 void testGet();         // return first item with key equal to k
 void testInsert();                      // insert k into the tree
@@ -15,23 +15,24 @@ void testPredecessor(); // return the predecessor of kstd::string in
 void testInOrder();              // return string of items from an inorder traversalstd::string pre
 void testPreOrder();             // return string of items from a preorder traversal
 void testPostOrder();            // return string of items from a postorder traversal
+void testStringOverLoad();
 
 
 int main(){
-    //testBST();
-    //testBSTcopy();
+    //testBST(); // we know that this is working due to the fact that other functions work
+    //testBSTCopy();
     testEmpty();      
     testGet();    
     testInsert();     
-    //testRemove();     
+    testRemove(); // this function is still giving me a segfault
     testMaximum();   
     testMinimum();    
     testSuccessor();  
     testPredecessor();
-    //testInOrder();    //this is the last of the order functions that needs to be written
+    testInOrder();    //this is the last of the order functions that needs to be written
     testPreOrder();   
     testPostOrder();  
-    //testEquals();
+    testStringOverLoad();
 }
 
 
@@ -67,6 +68,44 @@ void testGet(){
 }
 
 
+
+
+void testBSTCopy(){
+
+
+    BST<int> bst;
+    BST<int> testCopyBst;
+    //cout<<"BST assigned"<<endl;
+    int x=10;
+    int y=1;
+    int i=15;
+    int* value = &x;
+    int* value2 = &y;
+    int* value3 = &i;
+
+    bst.insert(value);
+    bst.insert(value2);
+    bst.insert(value3);
+
+    //testCopyBst = bst;
+    cout<<"debug from inside TestBSTCopy"<<endl;
+    //int& testCopy = &bst;
+    testCopyBst.copy(bst);
+    
+    string testCopyString = testCopyBst.inOrder();
+    cout<<"test of copy: "<<testCopyString<<endl;
+
+
+    cout<<"test copy"<<endl;
+
+
+
+}
+
+
+
+
+
 void testInsert(){                      // insert k into the tree
     BST<int> bst;
     int x=5;
@@ -87,7 +126,8 @@ void testRemove(){               // delete first item with key equal to k
     bst.insert(value);
     bst.insert(value2);
     bst.insert(value3);
-    cout<<"test remove  "<<endl;
+    bst.remove(10);
+    cout<<"test remove 10: "<< bst <<endl;
 
 }
 void testMaximum(){
@@ -139,11 +179,12 @@ void testSuccessor(){   // return the successor of k
     bst.insert(value);
     bst.insert(value2);
     bst.insert(value3);
+
     int* testS = bst.successor(1);
-    cout<<"test of successor"<<*testS<<endl;
+    cout<<"test of successor, should be 10: "<<*testS<<endl;
 
 }
-void testPredecessor(){ // return the predecessor of kstd::string in
+void testPredecessor(){ // return the predecessor of kstd::string in IS THIS RUNNING RIGHT
 
     BST<int> bst;
     int x=10;
@@ -157,13 +198,32 @@ void testPredecessor(){ // return the predecessor of kstd::string in
     bst.insert(value2);
     bst.insert(value3);
     int* testS = bst.predecessor(10);
-    cout<<"test of testPredecessor"<<*testS<<endl;
+    cout<<"test of testPredecessor, should be 15: "<<*testS<<endl;
 
 
 }//end of Predecessors
-/*
-void testInOrder();              // return string of items from an inorder traversalstd::string pre
-*/
+
+void testInOrder(){              // return string of items from an inorder traversalstd::string pre
+
+
+    BST<int> bst;
+    int x=10;
+    int y=1;
+    int i=15;
+    int* value = &x;
+    int* value2 = &y;
+    int* value3 = &i;
+
+    bst.insert(value);
+    bst.insert(value2);
+    bst.insert(value3);
+    string testPre = bst.inOrder();
+    cout<<"test of InOrder"<<testPre<<endl;
+
+
+
+
+}
 void testPreOrder(){             // return string of items from a preorder traversal
 
     BST<int> bst;
@@ -197,3 +257,21 @@ void testPostOrder(){            // return string of items from a postorder trav
     cout<<"test of postOrder"<<testPre<<endl;
 }
 
+void testStringOverLoad(){
+
+
+    BST<int> bst;
+    int x=10;
+    int y=1;
+    int i=15;
+    int* value = &x;
+    int* value2 = &y;
+    int* value3 = &i;
+
+    bst.insert(value);
+    bst.insert(value2);
+    bst.insert(value3);
+    string testPre = bst.postOrder();
+    cout << "test of bst string overload: " << bst <<endl;
+
+}
